@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - FREEPOST </title>
+    <title>{% block title %}Free-Post{% endblock %}</title>
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
     <link rel="stylesheet" href="static/css/baguetteBox.min.css">
@@ -14,33 +14,46 @@
 <body>
     <nav class="navbar navbar-expand-lg fixed-top bg-body clean-navbar navbar-light">
         <div class="container">
-            <a class="navbar-brand logo" href="/"><strong>FREEPOST</strong></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
-                <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <a class="navbar-brand logo" href="/"><strong>FREEPOST</strong></a>
+            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+                <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                     <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                    {% else %}
                     <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/sign-up">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/sign-up">Register</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
-    <main class="page landing-page">
-        <section class="clean-block clean-hero" style="background-image:url(&quot;tech/image4.jpg&quot;);color:rgba(9, 162, 255, 0.85);">
-            <div class="text">
-                <h2>WELCOME TO FREE POST!!!</h2>
-                <p><br><strong><span style="color: rgb(55, 65, 81);">Step into FreePost, where your thoughts find a voice. Share your story, connect with others, and inspire the world. Your words matter here. Welcome to the community of expression</span></strong></p>
-                <button class="btn btn-outline-light btn-lg" type="button" onclick="location.href='/login'">
-                    <strong>Logging!</strong>
-                </button>
-                
-                
-            </div>
-        </section>
-    </main>
-    <footer class="page-footer dark">
-        <div class="container" style="border-style: dashed;">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container">
+        {% for category, message in messages %}
+        <div class="alert {% if category == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+<footer class="page-footer dark">
+        <div class="container-fluid" style="border-style: dashed;">
             <div class="row">
                 <div class="col-sm-3">
                     <h5>Get started</h5>
@@ -60,11 +73,24 @@
         <div class="footer-copyright">
             <p>© 2023 Copyright Text</p>
         </div>
-    </footer>
+</footer>
+
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/js/baguetteBox.min.js"></script>
     <script src="static/js/vanilla-zoom.js"></script>
     <script src="static/js/theme.js"></script>
 </body>
+{% block javascript %}
+    <script type="text/javascript">
+      function deleteNote(noteId) {
+  fetch("/delete-note", {
+    method: "POST",
+    body: JSON.stringify({ noteId: noteId }),
+  }).then((_res) => {
+    window.location.href = "/";
+  });
+  }
+</script>
+{% endblock %}
 
 </html>

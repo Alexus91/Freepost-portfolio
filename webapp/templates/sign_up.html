@@ -1,77 +1,59 @@
-<!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Register - FREEPOST</title>
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
-    <link rel="stylesheet" href="static/css/baguetteBox.min.css">
-    <link rel="stylesheet" href="static/css/vanilla-zoom.min.css">
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg fixed-top bg-body clean-navbar navbar-light">
-        <div class="container"><a class="navbar-brand logo" href="/"><strong>FREEPOST</strong></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
-            <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/sign-up">Register</a></li>
-                </ul>
+{% extends "base.html" %} 
+{% block title %}Sign Up{% endblock %} 
+{% block content %}
+<main class="page registration-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info"><strong>Registration</strong></h2>
             </div>
-        </div>
-    </nav>
-    <main class="page registration-page">
-        <section class="clean-block clean-form dark">
-            <div class="container">
-                <div class="block-heading">
-                    <h2 class="text-info"><strong>Registration</strong></h2>
+            <form method="POST">
+                <div class="form-group">
+                  <label for="email"></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Enter email"
+                  />
                 </div>
-                <form>
-                    <div class="mb-3"><label class="form-label" for="username"></label>
-                        <input class="form-control item" type="text" id="name" data-bs-theme="light" placeholder=" Enter Username"></div>
-                    <div class="mb-3"><label class="form-label" for="email"></label>
-                        <input class="form-control item" type="email" id="email" data-bs-theme="light" placeholder=" Enter Email"></div>
-                    <div class="mb-3"><label class="form-label" for="password1"></label>
-                        <input class="form-control item" type="password1" id="password1" data-bs-theme="light" placeholder=" Enter password "></div>
-                    <div class="mb-3"><label class="form-label" for="password2"></label>
-                        <input class="form-control item" type="password1" id="password1" data-bs-theme="light" placeholder=" Enter password "></div>
+                <div class="form-group">
+                  <label for="firstName"></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="Enter first name"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password1"></label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password1"
+                    name="password1"
+                    placeholder="Enter password"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password2"></label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password2"
+                    name="password2"
+                    placeholder="Confirm password"
+                  />
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+    </section>
+</main>
+{% endblock %}
 
-                    <button class="btn btn-primary" type="submit">Register</button>
-                </form>
-            </div>
-        </section>
-    </main>
-    <footer class="page-footer dark">
-        <div class="container" style="border-style: dashed;">
-            <div class="row">
-                <div class="col-sm-3">
-                    <h5>Get started</h5>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/sign-up">Sign up</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h5>About us</h5>
-                    <ul>
-                        <li><a href="#">Contact us</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <p>© 2023 Copyright Text</p>
-        </div>
-    </footer>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/js/baguetteBox.min.js"></script>
-    <script src="static/js/vanilla-zoom.js"></script>
-    <script src="static/js/theme.js"></script>
-</body>
 
-</html>
