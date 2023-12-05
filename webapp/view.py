@@ -6,6 +6,9 @@ import json
 
 views = Blueprint('views', __name__)
 
+@views.route('/landing', methods=['GET'])
+def landing_page():
+    return render_template("landingpage.html", user=current_user if current_user.is_authenticated else None)
 
 @views.route('/', methods=['GET', 'POST'])
 @login_required

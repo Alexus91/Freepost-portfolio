@@ -1,21 +1,42 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-    %}
-    <h1 align="center">Free-Post</h1>
+{% extends "base.html" %} 
+{% block title %}Home{% endblock %} 
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Free-Post</h1>
+    <div class="card mt-3">
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <textarea name="note" id="note" class="form-control" placeholder="What's on your mind?"></textarea>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <ul class="list-group list-group-flush" id="notes">
-      {% for note in user.notes %}
-      <li class="list-group-item">
-        {{ note.data }}
-        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </li>
-      {% endfor %}
+        {% for note in user.notes|reverse %}
+        <li class="list-group-item">
+            <div class="card">
+                <div class="card-body">
+                    {{ note.data }}
+                    <button type="button" class="btn btn-danger float-end" onClick="deleteNote({{ note.id }})">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
     </ul>
-    <form method="POST">
-      <textarea name="note" id="note" class="form-control"></textarea>
-      <br />
-      <div align="center">
-        <button type="submit" class="btn btn-primary">Add Note</button>
-      </div>
-    </form>
-    {% endblock %}
+</div>
+
+<script>
+    function deleteNote(noteId) {
+        // Implement your delete note logic here
+        console.log(`Deleting note ${noteId}`);
+    }
+</script>
+{% endblock %}
+
+

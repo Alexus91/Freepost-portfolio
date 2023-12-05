@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+{% block title %}Home - FreePost{% endblock %} 
+{% block content %}
+<main class="page landing-page">
+    <section class="clean-block clean-hero" style="background-image: url('{{ url_for('static', filename='/img/scenery/image1.jpg', _external=True) }}');
+     background-size: cover; color: rgba(9, 162, 255, 0.5); height: 100vh;">
+
+        <div class="text">
+            <h2>WELCOME TO FREE POST!!!</h2>
+            <p><br><strong><span style="color: rgb(55, 65, 81);">
+                Step into FreePost, where your thoughts find a voice. Share your story, connect with others
+                , and inspire the world. Your words matter here. Welcome to the community of expression</span></strong></p>
+            <a href="/" class="btn btn-outline-light btn-lg"><strong>Login!</strong></a>
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+
+
