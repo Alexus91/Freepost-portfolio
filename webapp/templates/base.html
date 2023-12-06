@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="static/css/vanilla-zoom.min.css">
 </head>
 
-<body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
-
-    <!-- Navbar -->
+<body style="display: flex; flex-direction: column; min-height: 120vh; margin: 0;">
     <nav class="navbar navbar-expand-lg fixed-top bg-body clean-navbar navbar-light">
         <div class="container">
             <a class="navbar-brand logo" href="/landing"><strong>FREEPOST</strong></a>
@@ -33,33 +31,18 @@
                     {% endif %}
                 </ul>
             </div>
+            
         </div>
+        
     </nav>
 
-    <!-- Flash messages -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div class="container">
-        {% for category, message in messages %}
-        <!-- Flash message alert -->
-        <div class="alert {% if category == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissable fade show" role="alert">
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-    {% endwith %}
+    
 
-    <!-- Main content container -->
-    <div class="container-fluid" style="flex-grow: 1; margin-top: 56px;">
+    <div class="container" style="flex-grow: 1; margin-top: 56px;">
         {% block content %}{% endblock %}
     </div>
-    <!-- Footer -->
+
     <footer class="page-footer dark" style="border-style: dashed;">
-        <!-- Footer content -->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-5">
@@ -76,52 +59,32 @@
                         <li><a href="https://twitter.com/kamalfadlll" target="_blank">Twitter</a></li>
                         <li><a href="https://github.com/Alexus91" target="_blank">GitHub</a></li>
                     </ul>
-                        
-
-                        
-                    </ul>
                 </div>
             </div>
+            
         </div>
+        
     </footer>
-    
-    <!-- Scripts -->
+
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/js/baguetteBox.min.js"></script>
     <script src="static/js/vanilla-zoom.js"></script>
     <script src="static/js/theme.js"></script>
-    <script>
-        // Wait for the DOM to be fully loaded
-        document.addEventListener("DOMContentLoaded", function () {
-            // Toggle visibility of contact info
-            document.getElementById('contact-us').addEventListener('click', function () {
-                var contactInfo = document.getElementById('contact-info');
-                contactInfo.style.display = (contactInfo.style.display === 'none' || contactInfo.style.display === '') ? 'block' : 'none';
-            });
-        });
-    </script>
-    
+
     {% block javascript %}
-    <script type="text/javascript">
-        function deleteNote(noteId) {
-            fetch("/delete-note", {
-                method: "POST",
-                body: JSON.stringify({ noteId: noteId }),
-            }).then((_res) => {
-                window.location.href = "/";
-            });
-        }
-    </script>
-    <!-- Additional JavaScript -->
+        <script type="text/javascript">
+            function deleteNote(noteId) {
+                fetch("/delete-note", {
+                    method: "POST",
+                    body: JSON.stringify({ noteId: noteId }),
+                }).then((_res) => {
+                    window.location.href = "/";
+                });
+            }
+        </script>
     {% endblock %}
-    
-    </body>
-    
-    </html>
- 
 
 </body>
 
 </html>
-
 
