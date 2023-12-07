@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="static/css/vanilla-zoom.min.css">
 </head>
 
-<body style="display: flex; flex-direction: column; min-height: 120vh; margin: 0;">
+<body style="display: flex; flex-direction: column; min-height: 125vh; margin: 0;">
+
     <nav class="navbar navbar-expand-lg fixed-top bg-body clean-navbar navbar-light">
         <div class="container">
             <a class="navbar-brand logo" href="/landing"><strong>FREEPOST</strong></a>
@@ -31,12 +32,24 @@
                     {% endif %}
                 </ul>
             </div>
-            
         </div>
         
     </nav>
 
-    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container">
+        {% for category, message in messages %}
+        <div class="alert {% if category == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
 
     <div class="container" style="flex-grow: 1; margin-top: 56px;">
         {% block content %}{% endblock %}
@@ -48,7 +61,7 @@
                 <div class="col-sm-5">
                     <h5>Get started</h5>
                     <ul>
-                        <li><a href="/">Home</a></li>
+                        <li><a href="/landing">Home</a></li>
                         <li><a href="/sign-up">Sign up</a></li>
                     </ul>
                 </div>
