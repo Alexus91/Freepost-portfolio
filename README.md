@@ -5,7 +5,6 @@ Welcome to FREEPOST, a cutting-edge blogging platform that empowers users to exp
 
 ![FREEPOST Screenshot](webapp/static/img/scenery/Screenshotdesktop.png)
 
-![FREEPOST Screenshot](webapp/static/img/scenery/Screenshotdesktop.jpg)
 
 
 
