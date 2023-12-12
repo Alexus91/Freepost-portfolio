@@ -3,7 +3,8 @@ FREEPOST: Empowering Your Voice, Unleashing Creativity
 ## Introduction
 Welcome to FREEPOST, a cutting-edge blogging platform that empowers users to express themselves freely and connect with a like-minded community. FREEPOST is designed to provide a seamless and privacy-focused environment for users to share their thoughts, stories, and ideas without limitations.
 
-![FREEPOST Screenshot](webapp\static\img\scenery\Screenshotdesktop.png)
+![FREEPOST Screenshot](webapp/static/img/scenery/Screenshotdesktop.png)
+
 
 ## Key Features
 User-Friendly Interface: Enjoy a clean and intuitive interface that makes blogging a delightful experience.
