@@ -1,44 +1,79 @@
-{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content%}
-<main class="page registration-page"style = "min-height: 100%">
+{% extends "base.html" %} 
+{% block title %}Login{% endblock %} 
+{% block content%}
+
+<!-- Extend the base template and set the page title to "Login" -->
+
+<main class="page registration-page" style="min-height: 90vh">
+    <!-- Main content block for the login page with a minimum height -->
+
     <section class="clean-block clean-form dark">
+        <!-- Clean form section with a dark background -->
+
         <div class="container">
+            <!-- Container for the form content -->
+
             <div class="block-heading">
+                <!-- Heading block for the login form -->
                 <h2 class="text-info"><strong>Login</strong></h2>
+                <!-- Heading indicating the purpose of the form -->
             </div>
+
             <form method="POST">
+                <!-- Form for user login -->
+
                 <h3 align="center"></h3>
+                <!-- Empty heading with center alignment -->
+
                 <div class="form-group">
-                  <label for="email"></label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    name="email"
-                    placeholder="Enter email"
-                  />
+                    <!-- Form group for the email input -->
+                    <label for="email"></label>
+                    <!-- Empty label (for better accessibility) -->
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        placeholder="Enter email"
+                    />
+                    <!-- Email input field with placeholder text -->
                 </div>
+
                 <div class="form-group">
-                  <label for="password"></label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    name="password"
-                    placeholder="Enter password"
-                  />
+                    <!-- Form group for the password input -->
+                    <label for="password"></label>
+                    <!-- Empty label (for better accessibility) -->
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        name="password"
+                        placeholder="Enter password"
+                    />
+                    <!-- Password input field with placeholder text -->
                 </div>
+
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="checkbox" data-bs-theme="light">
-                  <label class="form-check-label" for="checkbox" style="font-size: 12px;">Remember me</label>
+                    <!-- Form check for the "Remember me" checkbox -->
+                    <input class="form-check-input" type="checkbox" id="checkbox" data-bs-theme="light">
+                    <!-- Checkbox input with a light theme -->
+                    <label class="form-check-label" for="checkbox" style="font-size: 12px;">
+                        Remember me
+                    </label>
+                    <!-- Label for the checkbox with custom font size -->
                 </div>
-              
+                
                 <br />
-              <button type="submit" class="btn btn-primary"style>Login</button>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Login</button>
+                <!-- Submit button for the login form with primary button style -->
             </form>
-      </div>
+        </div>
     </section>
-  </section>
+
 </main>
-{% endblock %} 
+
+{% endblock %}
+
 
 

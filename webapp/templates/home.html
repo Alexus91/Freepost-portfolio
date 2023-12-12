@@ -1,29 +1,43 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
+
 {% block content %}
 
+<!-- Container for the main content with top margin and minimum height -->
 <div class="container mt-5" style="min-height: 100%">
     
+    <!-- Heading for the note section -->
     <h1 class="text-center"><strong> Note </strong></h1>
 
+    <!-- Card for the note input form -->
     <div class="card mt-3">
         <div class="card-body">
+            <!-- Form for submitting a new note -->
             <form method="POST">
+                <!-- Textarea for entering the note content -->
                 <div class="mb-3">
                     <textarea name="note" id="note" class="form-control" placeholder="Share an update, {{ user.username }}"></textarea>
                 </div>
+                <!-- Submit button aligned to the right -->
                 <div class="text-end">
                     <button type="submit" class="btn btn-primary">Post</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <!-- List of notes displayed as a flush list group -->
     <ul class="list-group list-group-flush" id="notes">
+        <!-- Loop through user's notes in reverse order -->
         {% for note in user.notes|reverse %}
+        <!-- List item for each note -->
         <li class="list-group-item">
+            <!-- Card for displaying the note content and delete button -->
             <div class="card">
                 <div class="card-body">
+                    <!-- Display the note content -->
                     {{ note.data }}
+                    <!-- Delete button with a call to the deleteNote JavaScript function -->
                     <button type="button" class="btn btn-outline-danger float-end" onClick="deleteNote({{ note.id }})">
                         Delete
                     </button>
@@ -33,7 +47,9 @@
         {% endfor %}
     </ul>
 </div>
+
 {% endblock %}
+
 
 
 

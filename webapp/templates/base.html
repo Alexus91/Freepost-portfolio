@@ -2,9 +2,14 @@
 <html data-bs-theme="light" lang="en">
 
 <head>
+    <!-- Set the character set and viewport for responsive design -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    
+    <!-- Set the title of the page using a block for dynamic content -->
     <title>{% block title %}Free-Post{% endblock %}</title>
+    
+    <!-- Include external CSS files for styling -->
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
     <link rel="stylesheet" href="static/css/baguetteBox.min.css">
@@ -13,51 +18,60 @@
 
 <body style="display: flex; flex-direction: column; min-height: 125vh; margin: 0;">
 
+    <!-- Navigation bar with a brand logo and toggle button -->
     <nav class="navbar navbar-expand-lg fixed-top bg-body clean-navbar navbar-light">
         <div class="container">
+            <!-- Brand logo with a link to the landing page -->
             <a class="navbar-brand logo" href="/landing"><strong>FREEPOST</strong></a>
+            <!-- Navigation toggle button for smaller screens -->
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
                 <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
             </button>
             
+            <!-- Navigation links and conditional display for authenticated users -->
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="/logout">LOGOUT</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">LOGOUT</a></li>
                     {% else %}
-                    <li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/sign-up">SIGN-UP</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/sign-up">SIGN-UP</a></li>
                     {% endif %}
                 </ul>
             </div>
         </div>
-        
     </nav>
 
+    <!-- Flash messages for user feedback -->
     {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div class="container">
-        {% for category, message in messages %}
-        <div class="alert {% if category == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissable fade show" role="alert">
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
+        {% if messages %}
+            <div class="container">
+                {% for category, message in messages %}
+                    <!-- Display alert messages with dynamic styling based on category -->
+                    <div class="alert {% if category == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissable fade show" role="alert">
+                        {{ message }}
+                        <!-- Dismiss button for closing the alert -->
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     {% endwith %}
 
+    <!-- Main content container -->
     <div class="container" style="flex-grow: 1; margin-top: 56px;">
         {% block content %}{% endblock %}
     </div>
 
+    <!-- Footer section with links and contact information -->
     <footer class="page-footer dark" style="border-style: dashed;">
         <div class="container-fluid">
             <div class="row">
+                <!-- Section for getting started links -->
                 <div class="col-sm-5">
                     <h5>Get started</h5>
                     <ul>
@@ -65,6 +79,7 @@
                         <li><a href="/sign-up">Sign up</a></li>
                     </ul>
                 </div>
+                <!-- Section for contact information links -->
                 <div class="col-sm-5">
                     <h5>Contact us</h5>
                     <ul>
@@ -74,19 +89,20 @@
                     </ul>
                 </div>
             </div>
-            
         </div>
-        
     </footer>
 
+    <!-- Include external JavaScript files -->
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/js/baguetteBox.min.js"></script>
     <script src="static/js/vanilla-zoom.js"></script>
     <script src="static/js/theme.js"></script>
 
+    <!-- Custom JavaScript block for deleting notes -->
     {% block javascript %}
         <script type="text/javascript">
             function deleteNote(noteId) {
+                // Send a POST request to delete a note and redirect to the home page
                 fetch("/delete-note", {
                     method: "POST",
                     body: JSON.stringify({ noteId: noteId }),
@@ -100,4 +116,5 @@
 </body>
 
 </html>
+
 
